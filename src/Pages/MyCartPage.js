@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import { useParams, useSearchParams } from 'react-router-dom'
+import useData from '../hooks/useData';
 
 const MyCartPage = () => {
+  let [searchParams] = useSearchParams();
+  const { data } = useData({
+    id: parseInt(searchParams.get('productId'))
+  });
 
+
+  console.log(data)
 
   const [qty, setQty] = useState(1);
-  const [name, setName] = useState()
-  const [addr, setAddr] = useState()
-  const [city, setCity] = useState()
-  const [zipCode, setZP] = useState()
-  const [value, setValue] = useState()
+  const [name, setName] = useState();
+  const [addr, setAddr] = useState();
+  const [city, setCity] = useState();
+  const [zipCode, setZP] = useState();
+  const [value, setValue] = useState();
+
 
   useEffect(() => {
-    setValue(qty * 122.5)
+    setValue(qty * data.price)
   }, [qty])
+
   const handleDecrement = () => {
     if (qty > 1) {
       setQty(qty - 1);
@@ -32,11 +42,11 @@ const MyCartPage = () => {
       </div>
       <div className='row mt-4'>
         <div className='col-sm-12 col-md-3'>
-          <img src='/images/product.png' className='image' />
+          <img src={data.imageUrl} className='image' />
         </div>
         <div className='col-sm-12 col-md-4'>
-          <h5>Adult Bamboo ToothBrush - 2pk</h5>
-          <h5 className='h6 text-secondary'>INR 122.5</h5>
+          <h5>{data.name}</h5>
+          <h5 className='h6 text-secondary'>INR {data.price}</h5>
           <p>Color: Natural</p>
           <div>
             <div className='d-flex justify-content-between align-content-center'>
