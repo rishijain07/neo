@@ -1,16 +1,14 @@
 import data from '../data.json'
 
 const useData = ({ id }) => {
+  if (typeof id === 'undefined') return { data }
 
-  if (id) {
+  if (typeof id === 'number') {
     return {
       data: data.find(item => item.id === id)
     }
   }
 
-  return {
-    data
-  }
 }
 
 export default useData
