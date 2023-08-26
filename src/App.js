@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import Layout from './Pages/Layout';
 import HomePage from './Pages/HomePage';
 import MyCartPage from './Pages/MyCartPage';
+import  Invoice from './Pages/Invoice';
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
         <Route path='/' element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path='cart' element={<MyCartPage />} />
+          <Route path='invoice' element={<Invoice />} />
         </Route>
       </Routes>
     </BrowserRouter>
