@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import useData from '../hooks/useData';
 
 const MyCartPage = () => {
+  const navigate = useNavigate();
   let [searchParams] = useSearchParams();
   const { data } = useData({
     id: parseInt(searchParams.get('productId'))
@@ -32,6 +33,13 @@ const MyCartPage = () => {
   const handleIncrement = () => {
     if (qty < 10) {
       setQty(qty + 1);
+    }
+  }
+
+  const handleFormSubmission = (e) => {
+    e.preventDefault();
+    if (name && addr && city && zipCode) {
+      navigate(`/summary?productId=${data.id}&qty=${qty}&name=${name}&addr=${addr}&city=${city}&zipCode=${zipCode}`)
     }
   }
 
@@ -71,7 +79,7 @@ const MyCartPage = () => {
             <input value={addr} onChange={(x) => setAddr(x.target.value)} type="text" class="form-control my-2" placeholder='Address' />
             <input value={city} onChange={(x) => setCity(x.target.value)} type="text" class="form-control my-2" placeholder='City' />
             <input value={zipCode} onChange={(x) => setZP(x.target.value)} type="number" class="form-control my-2" placeholder='Zip Code' />
-            <button class="btn btn-success">Check Out</button>
+            <button class="btn btn-success" onClick={handleFormSubmission}>Check Out</button>
           </form>
         </div>
       </div>
