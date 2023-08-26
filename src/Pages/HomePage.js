@@ -1,9 +1,8 @@
 import React from 'react'
+import Products from '../components/Products'
 
 const HomePage = () => {
-  return (
-    <div>HomePage</div>
-  )
+  return <Products/>
 }
 
 export default HomePage

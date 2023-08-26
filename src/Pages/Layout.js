@@ -5,7 +5,7 @@ import { Header } from "../components/Header"
 
 const Layout = () => {
   return (
-    <div>
+    <div style={{backgroundColor: "#E7F4E7"}}>
         <NavBar/>
         <Header/>
         <Outlet/>
